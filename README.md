@@ -6,7 +6,7 @@ Proyecto Ecommerce Digital House (Constanza, Sabrina y Joaquin)
 # - Diseño preliminar del sitio.
 # - Busqueda de imagenes para ejemplos de productos.
 # - Maquetado.
-# - Crear repositorio en GIT -- LISTO. Faltan emails de las chicas para agregarlas como colaboradoras
+# - Crear repositorio en GIT -- LISTO.
 # - Crear carpetas img y css -- LISTO.
 # - Generar index.php. -- LISTO.
 # - Vincular bootstrap. --LISTO.
