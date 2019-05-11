@@ -2,7 +2,7 @@
 Proyecto Ecommerce Digital House (Constanza, Sabrina y Joaquin)
 
 # Pasos a definir:
-# ----------------
+------------------
 # - Diseño preliminar del sitio.
 # - Busqueda de imagenes para ejemplos de productos.
 # - Maquetado.
@@ -11,16 +11,3 @@ Proyecto Ecommerce Digital House (Constanza, Sabrina y Joaquin)
 # - Generar index.php. -- LISTO.
 # - Vincular bootstrap. --LISTO.
 # - Generar master.css para los estilos personalizados. --LISTO.
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
