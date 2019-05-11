@@ -10,7 +10,6 @@
     <div class="jumbotron">
       <h1 class="display-4">Proyecto E-CommerceDH por Connie, Sabri y Joaco</h1>
       <p class="lead">Sitio en construcción...</p>
-      <p class ESTO ES DE PRUEBA, LUEGO LO BORRO </p>
       <hr class="my-4">
       <p>paciencia por favor</p>
       <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
