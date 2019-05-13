@@ -11,3 +11,11 @@ Proyecto Ecommerce Digital House (Constanza, Sabrina y Joaquin)
 # - Generar index.php. -- LISTO.
 # - Vincular bootstrap. --LISTO.
 # - Generar master.css para los estilos personalizados. --LISTO.
+
+-------------------
+# links con ejemplos Ecommerce
+# http://www.guadalupecid.com/
+# https://www.miroargentina.com.ar/
+# https://www.womanly.com.ar/
+# https://www.luzdemar.com.ar/
+# 

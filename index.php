@@ -7,6 +7,9 @@
     <title>E-CommerceDH</title>
   </head>
   <body>
+    <div class="container-fle">
+
+    </div>
     <div class="jumbotron">
       <h1 class="display-4">Proyecto E-CommerceDH por Connie, Sabri y Joaco</h1>
       <p class="lead">Sitio en construcción...</p>
