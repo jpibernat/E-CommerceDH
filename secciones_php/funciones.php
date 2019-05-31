@@ -1,6 +1,7 @@
 <?php
+session_start();
 require_once("helpers.php");
-function validar($datos){
+function validar($datos, $bandera){
   $errores =[];
   if(isset($datos["nombre"])){
     $nombre = trim($datos["nombre"]);
@@ -9,8 +10,8 @@ function validar($datos){
     }
   }
   if(isset($datos["apellido"])){
-    $nombre = trim($datos["apellido"]);
-    if(empty($nombre)){
+    $apellido = trim($datos["apellido"]);
+    if(empty($apellido)){
       $errores["apellido"]="El campo apellido no puede estar vacio";
     }
   }
@@ -40,9 +41,9 @@ $password = trim($datos["password"]);
       $errores["reppassword"]="Las contraseñas deben coincidir";
     }
   }
-  if (isset($_FILES)){
+  if (isset($_FILES) && $bandera == 'registro'){
     if ($_FILES["avatar"]["error"]!=0) {
-        $errores["avatar"]="No recibi la imagen";// code...
+        $errores["avatar"]="No recibi la imagen";
     }
     $avatar = $_FILES["avatar"]["name"];
     $ext = pathinfo($avatar,PATHINFO_EXTENSION);
@@ -71,6 +72,7 @@ function armarAvatar($imagen){
 function armarUsuario($datos,$avatar){
   $usuario = [
     "nombre"=>$datos["nombre"],
+    "apellido"=>$datos["apellido"],
     "email"=>$datos["email"],
     "passsword"=>password_hash($datos["password"],PASSWORD_DEFAULT),
     "avatar"=>$avatar,
@@ -82,6 +84,55 @@ function armarUsuario($datos,$avatar){
 function guardarUsuario($usuario){
   $json = json_encode($usuario);
   file_put_contents("usuarios.json",$json.PHP_EOL,FILE_APPEND);
+}
+
+function buscarPorEmail($email){
+  $usuarios = abrirBaseJSON("usuarios.json");
+  foreach ($usuarios as $key => $value) {
+    if($email == $value["email"]){
+      return  $value;
+    }
+  }
+  return null;
+}
+
+function abrirBaseJSON(){
+  if (file_exists($archivo)){
+      $json = file_get_contents($archivo);
+      $json = explode(PHP_EOL, $json);
+      array_pop ($json);
+      foreach ($json as $key => $value) {
+        $arrayUsuarios[] = json_decode($value, true);
+      }
+      return $arrayUsuarios;
+  }
+  return null;
+
+
+}
+
+function seteoUsuario($usuario, $datos){
+  $_SESSION["nombre"] = $usuario["nombre"];
+  $_SESSION["apellido"] = $usuario["apellido"];
+  $_SESSION["email"] = $usuario["nombre"];
+  $_SESSION["avatar"] = $usuario["nombre"];
+  $_SESSION["perfil"] = $usuario["nombre"];
+  if(isset($datos["recordar"])){
+      setcookie("email", $datos["email"], time()+60*60*24);
+      setcookie("password",$datos["password"], time()+3600);
+      /*esta linea es para guardar la contraseña en  la cookie por un tiempo determinado(no recomendable)*/
+  }
+}
+
+function validarAcceso(){
+  if(issset($_SESSION["email"])){
+    return true;
+  }elseif (isset($_COOKIE["email"])){
+    $_SESSION["email"] = $_COOKIE["email"];
+    $_SESSION["password"] = $_COOKIE["password"];
+  }else{
+    return false;
+  }
 }
 
  ?>

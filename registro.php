@@ -2,7 +2,7 @@
 require_once("helpers.php");
 require_once("secciones_php/funciones.php");
 if ($_POST) {
-  $errores = validar($_POST);
+  $errores = validar($_POST, "registro");
   if(count($errores)==0){
     $avatar = armarAvatar($_FILES);
     $usuario = armarUsuario($_POST,$avatar);
@@ -29,43 +29,42 @@ if ($_POST) {
     <div class="main">
     <section class="sin-carousel">
         <article class="registro">
+          <?php if (isset($errores)):?>
+            <ul class="alert alert-danger">
+              <?php foreach ($errores as $key => $value) :?>
+              <li><?=$value;?></li>
+              <?php endforeach; ?>
+            </ul>
+          <?php endif;?>
           <h1>Registrate acá</h1>
           <!--Este formulario ya valida con php, pero se reemplazo el nombre de usuario por nombre de la persona y se agrego el campo de apellido. El login se haria por email. Tambien falta ajustar el responsive del mismo (se ve mal en dispositivo movil), falta corregir los errores que muestra debajo de cada campo -->
           <form action="" method="POST" enctype= "multipart/form-data"  >
-             <label> Usuario:</label>
+             <label>Nombre</label>
              <br>
              <input name="nombre" type="text" id="nombre"  value="<?=isset($errores["nombre"])? "": persistir("nombre")?>" placeholder="Nombre" />
-             <br>
-             <br>
              <!--aca deberia ir el php donde se muestra el error en caso de existir alguno -->
+             <br>
+             <label>Apellido</label>
+             <br>
              <input name="apellido" type="text" id="apellido"  value="<?=isset($errores["apellido"])? "": persistir("apellido")?>" placeholder="Apellido" />
              <br>
-             <br>
-             <p class="alert alert-danger text-center"><?php echo $errores["apellido"]?></p>
-             <label>Email:</label>
+             <label>Email</label>
              <br>
              <input name="email" type="text" id="email" value="<?=isset($errores["email"])? "": persistir("email")?>" placeholder="Correo electrónico"/>
              <br>
+             <label>Contraseña</label>
              <br>
-             <p class="alert alert-danger text-center"><?php echo $errores["email"]?></p>
-             <label>Contraseña:</label>
+             <input name="password" type="password" id="password" value="<?=isset($errores["password"])? "": persistir("password")?>" placeholder="Contraseña" />
              <br>
-             <input name="password" type="password" id="password" value="<?=isset($errores["password"])? "": persistir("password")?>" placeholder="Contraseña..." />
+             <label>Confirmar contraseña</label>
              <br>
+             <input name="repassword" type="password" id="repassword" value="<?=isset($errores["repassword"])? "": persistir("repassword")?>" placeholder="Repita su contraseña" />
              <br>
-             <p class="alert alert-danger text-center"><?php echo $errores["password"]?></p>
-             <label>Confirmar contraseña:</label>
-             <br>
-             <input name="repassword" type="password" id="repassword" value="<?=isset($errores["repassword"])? "": persistir("repassword")?>" placeholder="Rectifique su contraseña" />
-             <br>
-             <br>
-             <p class="alert alert-danger text-center"><?php echo $errores["repassword"]?></p>
              <br>
              <input  type="file" name="avatar" value=""/>
              <br>
              <br>
              <button class="btn-buttom btn-primary" type="submit">Enviar</button>
-
              <button  class="btn-buttom btn-success" type="reset">Restablecer</button>
            </form>
         </article>

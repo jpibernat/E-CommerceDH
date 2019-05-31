@@ -1,8 +1,10 @@
 <?php
+require_once("helpers.php");
+require_once("secciones_php/funciones.php");
   if($_POST){
-    $errores = validar($_POST);
-    if($errores == 0){
-      $usuario = buscarPorMail($_POST["email"]);
+    $errores = validar($_POST, "ingreso");
+    if(count($errores) == 0){
+      $usuario = buscarPorEmail($_POST["email"]);
       if($usuario == null){
         $errores["email"]= "Email y/o contraseña invalidos";
       }
@@ -13,7 +15,7 @@
         else {
           seteoUsuario($usuario,$_POST["recordar"]);
           if (validarAcceso()){
-            header("location: perfil.php");
+            header("location: perfil.html");
             exit;
           }
           else {
@@ -43,27 +45,40 @@
     <div class="main">
 <section class="sin-carousel">
   <article class="ingreso">
-    <h1>Ingreso</h1>
-<!--Este formulario se debe reemplazar por otro como el del ejemplo de la clase, pero se debe conservar el ingreso por email y no por nombre de usuario -->
-    <form>
-    <div class="form-group">
-    <label for="exampleInputEmail1">Email</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingresá tu email">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Contraseña</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
-  </div>
-  <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Recueeerdame ♫</label>
-  </div>
-  <button type="submit" class="btn btn-primary">mUKIaTe</button>
-  <p><a href="mailto:recupero@ferswimwear.com.ar">Olvidé mi contraseña</a>
-  </p>
-</form>
-  </article>
-</section>
+    <?php if (isset($errores)):?>
+      <ul class="alert alert-danger">
+        <?php foreach ($errores as $key => $value) :?>
+        <li><?=$value;?></li>
+        <?php endforeach; ?>
+      </ul>
+    <?php endif;?>
+    <section class="row  text-center ">
+    <article class="col-12  " >
+        <h2>Inicio de sesión</h2>
+        <form action="" method="POST"   >
+          <label>Email:</label>
+          <br>
+          <input name="email" type="text" id="email"   value="" placeholder="Correo electrónico"/>
+          <br>
+          <br>
+          <label>Contraseña:</label>
+          <br>
+          <input name="password" type="password" id="password"  value="" placeholder="Contraseña..." />
+          <br>
+          <br>
+          <input name="recordar" type="checkbox" id="recordarme" value="recordar"/>
+          <label>Recuerdarme </label>
+          <br>
+          <br>
+          <a href="olvidePassword.php">Olvide mi Contraseña</a>
+          <br>
+          <br>
+          <button class="btn-buttom btn-primary" type="submit">Entrar</button>
+        </form>
+
+    </article>
+  </section>
+
 </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
