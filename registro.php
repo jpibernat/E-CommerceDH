@@ -29,43 +29,69 @@ if ($_POST) {
     <div class="main">
     <section class="sin-carousel">
         <article class="registro">
-          <?php if (isset($errores)):?>
+          <!--<?php if (isset($errores)):?>
             <ul class="alert alert-danger">
               <?php foreach ($errores as $key => $value) :?>
               <li><?=$value;?></li>
               <?php endforeach; ?>
             </ul>
           <?php endif;?>
-          <h1>Registrate acá</h1>
+-->
+        </article>
+    </section>
+          <section class="row text-center">
+          <article class="col-12">
+            <h2>Registrate acá</h2>
           <!--Este formulario ya valida con php, pero se reemplazo el nombre de usuario por nombre de la persona y se agrego el campo de apellido. El login se haria por email. Tambien falta ajustar el responsive del mismo (se ve mal en dispositivo movil), falta corregir los errores que muestra debajo de cada campo -->
           <form action="" method="POST" enctype= "multipart/form-data"  >
+            <div class="form-group">
              <label>Nombre</label>
-             <br>
-             <input name="nombre" type="text" id="nombre"  value="<?=isset($errores["nombre"])? "": persistir("nombre")?>" placeholder="Nombre" />
+             <input class="form-control" name="nombre" type="text" id="nombre"  value="<?=isset($errores["nombre"])? "": persistir("nombre")?>" placeholder="Nombre" />
+             <span><?= (isset($errores['nombre'])) ? $errores["nombre"] : "" ?></span>
+             </div>
+
              <!--aca deberia ir el php donde se muestra el error en caso de existir alguno -->
-             <br>
+             <div class="form-group">
              <label>Apellido</label>
-             <br>
-             <input name="apellido" type="text" id="apellido"  value="<?=isset($errores["apellido"])? "": persistir("apellido")?>" placeholder="Apellido" />
-             <br>
+             <input class="form-control" name="apellido" type="text" id="apellido"  value="<?=isset($errores["apellido"])? "": persistir("apellido")?>" placeholder="Apellido" />
+             <span><?= (isset($errores['apellido'])) ? $errores["apellido"] : "" ?></span>
+           </div>
+
+           <div class="form-group">
              <label>Email</label>
              <br>
-             <input name="email" type="text" id="email" value="<?=isset($errores["email"])? "": persistir("email")?>" placeholder="Correo electrónico"/>
-             <br>
+             <input class="form-control" name="email" type="text" id="email" value="<?=isset($errores["email"])? "": persistir("email")?>" placeholder="Correo electrónico"/>
+             <span><?= (isset($errores['email'])) ? $errores["email"] : "" ?></span>
+           </div>
+
+           <div class="form-group">
              <label>Contraseña</label>
-             <br>
-             <input name="password" type="password" id="password" value="<?=isset($errores["password"])? "": persistir("password")?>" placeholder="Contraseña" />
-             <br>
+             <input class="form-control" name="password" type="password" id="password" value="<?=isset($errores["password"])? "": persistir("password")?>" placeholder="Contraseña" />
+             <span><?= (isset($errores['password'])) ? $errores["password"] : "" ?></span>
+           </div>
+
+           <div class="form-group">
              <label>Confirmar contraseña</label>
-             <br>
-             <input name="repassword" type="password" id="repassword" value="<?=isset($errores["repassword"])? "": persistir("repassword")?>" placeholder="Repita su contraseña" />
-             <br>
-             <br>
-             <input  type="file" name="avatar" value=""/>
-             <br>
-             <br>
-             <button class="btn-buttom btn-primary" type="submit">Enviar</button>
-             <button  class="btn-buttom btn-success" type="reset">Restablecer</button>
+             <input class="form-control" name="repassword" type="password" id="repassword" value="<?=isset($errores["repassword"])? "": persistir("repassword")?>" placeholder="Repita su contraseña" />
+             <span><?= (isset($errores['repassword'])) ? $errores["repassword"] : "" ?></span>
+           </div>
+
+          <!--<div class="form-group">
+             <input class="form-control" type="file" name="avatar" value=""/>
+           </div>-->
+           <div class="custom-file">
+             <input type="file" name="avatar" class="custom-file-input" value="" />
+             <label class="custom-file-label" for="validatedCustomFile" style="text-align: left;">Seleccione un avatar</label>
+           <div class="invalid-feedback">Example invalid custom file feedback</div>
+
+           <span><?= (isset($errores['avatar'])) ? $errores["avatar"] : "" ?></span>
+           </div>
+           <br>
+           <br>
+           <div class="form-group text-center mb-3 col-md-12">
+             <button class= "btn btn-success btn-block btn-rounded z-depth-1" type="submit">Enviar</button>
+             <button  class="btn btn-secondary btn-block btn-rounded z-depth-1" type="reset">Restablecer</button>
+           </div>
            </form>
         </article>
     </section>

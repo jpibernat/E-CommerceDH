@@ -18,12 +18,28 @@ nav{
   z-index: 1;
 }
 
+nav img {
+  display: flex;
+  height: 3.5rem;
+  align-items: center;
+}
+
+.nav-item{
+  display: flex;
+  align-items: center;
+}
+
 .bd-example{
   z-index: 0;
 }
 
 .main{
-  width: 100%;
+  flex-direction: column;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  width: 320px;
   height: auto;
 }
 
@@ -80,7 +96,7 @@ article img{
 }
 
 .registro{
-  max-width: 320px;
+  /*max-width: 320px;*/
 }
 
 nav ul{
@@ -120,6 +136,14 @@ p.respuesta{
 
 }
 
+span{
+  color: gray;
+  max-width: 320px;
+  height: 2rem;
+}
+
+
+
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
   article img{
     width: 40%;
@@ -144,6 +168,11 @@ p.respuesta{
     float: left;
   }
   section {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .main{
     width: 100%;
     overflow: hidden;
     margin-bottom: 10px;

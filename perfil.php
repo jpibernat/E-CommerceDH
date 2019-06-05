@@ -18,17 +18,17 @@ if(!isset($_SESSION["email"])){
   </head>
   <body>
     <div class="flex-container">
-      <section class="row text-center">
+      <?php include_once ("secciones_php/menu.php")?>
+      <div class="sin-carousel">
+        <section class="row text-center">
+        <h2>BIENVENIDO</h2>
           <article class="col-12">
-            <h2>BIENVENIDO</h2>
-            <br>
             <h3><?=$_SESSION["nombre"]?></h3>
-            <br>
-            <img src="avatares/<?=$_SESSION["avatar"];?>" alt="Avatar">
-            <br>
+            <img style="max-width: 20%; border-radius: 50%;" src="avatares/<?=$_SESSION["avatar"];?>" alt="Avatar">
             <a href="logout.php">Cerrar Sesion</a>
           </article>
-      </section>
+        </section>
+      </div>
     </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

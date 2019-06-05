@@ -15,7 +15,7 @@ require_once("secciones_php/funciones.php");
         else {
           seteoUsuario($usuario,$_POST["recordar"]);
           if (validarAcceso()){
-            header("location: perfil.html");
+            header("location: perfil.php");
             exit;
           }
           else {
@@ -43,42 +43,47 @@ require_once("secciones_php/funciones.php");
     <div class="flex-container">
     <?php include_once ("secciones_php/menu.php")?>
     <div class="main">
-<section class="sin-carousel">
-  <article class="ingreso">
-    <?php if (isset($errores)):?>
-      <ul class="alert alert-danger">
-        <?php foreach ($errores as $key => $value) :?>
-        <li><?=$value;?></li>
-        <?php endforeach; ?>
-      </ul>
-    <?php endif;?>
-    <section class="row  text-center ">
-    <article class="col-12  " >
+      <section class="sin-carousel">
+        <article class="ingreso">
+          <!--<?php if (isset($errores)):?>
+            <ul class="alert alert-danger">
+              <?php foreach ($errores as $key => $value) :?>
+                <li><?=$value;?></li>
+              <?php endforeach; ?>
+            </ul>
+          <?php endif;?>-->
+        </article>
+      </section>
+    <section class="row text-center">
+    <article class="col-12">
         <h2>Inicio de sesión</h2>
-        <form action="" method="POST"   >
-          <label>Email:</label>
-          <br>
-          <input name="email" type="text" id="email"   value="" placeholder="Correo electrónico"/>
-          <br>
-          <br>
-          <label>Contraseña:</label>
-          <br>
-          <input name="password" type="password" id="password"  value="" placeholder="Contraseña..." />
-          <br>
-          <br>
-          <input name="recordar" type="checkbox" id="recordarme" value="recordar"/>
-          <label>Recuerdarme </label>
-          <br>
-          <br>
-          <a href="olvidePassword.php">Olvide mi Contraseña</a>
-          <br>
-          <br>
-          <button class="btn-buttom btn-primary" type="submit">Entrar</button>
+        <form action="" method="POST">
+          <div class="form-group">
+            <label>Email:</label>
+            <input class="form-control" name="email" type="text" id="email"   value="" placeholder="Correo electrónico"/>
+            <span><?= (isset($errores['email'])) ? $errores["email"] : "" ?></span>
+          </div>
+          <div class="form-group">
+            <label>Contraseña:</label>
+            <input class="form-control" name="password" type="password" id="password"  value="" placeholder="Contraseña..." />
+            <?= (isset($errores['password'])) ? $errores["password"] : "" ?></span>
+          </div>
+          <div class="form-group custom-control custom-switch">
+            <input name="recordar" type="checkbox" class="custom-control-input" id="customSwitch1" value="recordar"/>
+            <label class="custom-control-label" for="customSwitch1">Recordame</label>
+          </div>
+          <div class="form-group">
+            <a href="olvidePassword.php">Olvide mi Contraseña</a>
+          </div>
+          <div class="form-group text-center mb-3 col-md-12">
+            <button class="btn btn-success btn-block btn-rounded z-depth-1" type="submit">Ingresar</button>
+          </div>
+          <div class="form-group">
+            <a href="registro.php">Registrate aca!</a>
+          </div>
         </form>
-
     </article>
   </section>
-
 </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
