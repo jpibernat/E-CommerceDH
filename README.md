@@ -11,7 +11,7 @@ Proyecto Ecommerce Digital House (Constanza, Sabrina y Joaquin)
 # - Generar index.php.
 # - Vincular bootstrap.
 # - Generar master.css para los estilos personalizados.
-#
+# Se agregó footer y whatsapp.
 #
 #
 #
